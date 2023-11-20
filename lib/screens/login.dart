@@ -9,18 +9,22 @@ class Login1 extends StatefulWidget {
 }
 
 class _Login1State extends State<Login1> {
+  final loginkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
-          height: size.height,
-          width: size.width,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage('assets/images/car.jpg'))),
-          child: Center(
+      body: Form(
+        key: loginkey,
+        child: Container(
+
+            height: size.height,
+            width: size.width,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage('assets/images/car.jpg'))),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -33,33 +37,35 @@ class _Login1State extends State<Login1> {
                   ],
                 ),
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(17.0),
-                      child: TextField(
+                      child: TextFormField(
+
                         autofocus: true,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.allow(RegExp("[0-9]+"))
-                        ],
-                        style: const TextStyle(color: Colors.white),
-                        cursorColor: Colors.redAccent,
-                        maxLength: 12,
                         decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.transparent,
+                            label: Text('Email',
+                                style: TextStyle(color: Colors.white30)),
                             hintText: 'Enter your email',
                             hintStyle: TextStyle(color: Colors.white70),
-                            label: const Text('Email',
-                                style: TextStyle(fontStyle: FontStyle.italic)),
                             border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(width: 14, color: Colors.white),
+                                borderSide: BorderSide(width: 14, color: Colors.white),
                                 borderRadius: BorderRadius.circular(100))),
+
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'please enter your email';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(17.0),
-                      child: TextField(
+                      child: TextFormField(
                         obscureText: true,
                         obscuringCharacter: '*',
                         style: const TextStyle(color: Colors.white),
@@ -71,21 +77,54 @@ class _Login1State extends State<Login1> {
                             hintStyle: TextStyle(color: Colors.white70),
                             label: const Text('Password'),
                             border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(width: 14, color: Colors.green),
+                           borderSide:     BorderSide(width: 14, color: Colors.green),
                                 borderRadius: BorderRadius.circular(50))),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'please confirm your password';
+                          }
+                          return null;
+                        },
+
                       ),
-                    ),
-                    ElevatedButton(
-                        style: const ButtonStyle(
-                            backgroundColor:
-                                MaterialStatePropertyAll(Colors.black26)),
-                        onPressed: () {},
-                        child: const Text(
-                          'Login',
-                          style: TextStyle(fontSize: 12),
-                        ))
+                    ),TextButton(onPressed: () {
+
+                    }, child:
+                    Row(mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text('Forgot Password',style: TextStyle(color: Colors.lightBlue),),
+                      ],
+                    )),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                          onPressed: () {
+                            if (loginkey.currentState!.validate()) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text('success')));
+                            }
+                          },
+                          child: Text(
+                            'Login',
+                            style:
+                                TextStyle(fontSize: 19, color: Colors.blue),
+                          )),
+                    )
                   ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('Do not have an account ? ',style: TextStyle(color: Colors.white,fontSize: 20)),
+                            TextButton(
+                                onPressed: () {}, child: Text('Register'))
+                          ],
+                        )
+                      ]),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -93,15 +132,10 @@ class _Login1State extends State<Login1> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         IconButton(
-                          icon: Image.asset('assets/images/facebook.png',
-                              cacheHeight: 40, cacheWidth: 40),
-                          onPressed: () {
-                            print("clicked");
-                          },
-                        ),
-                        IconButton(
-                          icon: Image.asset('assets/images/linkedin.jpg',
-                              cacheHeight: 40, cacheWidth: 40),
+                          icon: Image.asset(
+                              'assets/images/google_logo_icon.png',
+                              cacheHeight: 40,
+                              cacheWidth: 40),
                           onPressed: () {
                             print("clicked");
                           },
@@ -117,9 +151,10 @@ class _Login1State extends State<Login1> {
                         )
                       ]),
                 ),
+
               ],
-            ),
-          )),
+            )),
+      ),
     );
   }
 }
