@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:second_choice/screens/login.dart';
+import 'package:second_choice/screens/profilepage.dart';
 import 'package:second_choice/screens/register.dart';
 
 main() {
@@ -11,7 +12,7 @@ class Myapp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: Login1()
+    return const MaterialApp(home: ProfilePage1()
       ,);
   }
 }
