@@ -26,7 +26,7 @@ class _HomePage extends State<HomePage> {
   TextEditingController dateInput = TextEditingController();
   TextEditingController timeInput = TextEditingController();
 
-  // @override
+   @override
   void initState() {
     dateInput.text = ""; //set the initial value of text field
     timeInput.text = ""; //set the initial value of text field

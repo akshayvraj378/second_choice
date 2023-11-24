@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:second_choice/screens/regtest.dart';
 
 class Login12 extends StatefulWidget {
   const Login12({super.key});
@@ -18,7 +19,6 @@ class _Login12State extends State<Login12> {
       body: Form(
         key: loginkey,
         child: Container(
-
             height: size.height,
             width: size.width,
             decoration: BoxDecoration(
@@ -32,8 +32,12 @@ class _Login12State extends State<Login12> {
                   children: [
                     Text('SHIFT TO',
                         style: TextStyle(color: Colors.white54, fontSize: 30)),
-                    Text('RACE',style: TextStyle(color: Colors.red,fontSize: 18)),
-                    Text('MODE',style: TextStyle(fontSize: 29,color: Colors.white54),)
+                    Text('RACE',
+                        style: TextStyle(color: Colors.red, fontSize: 18)),
+                    Text(
+                      'MODE',
+                      style: TextStyle(fontSize: 29, color: Colors.white54),
+                    )
                   ],
                 ),
                 Column(
@@ -42,19 +46,18 @@ class _Login12State extends State<Login12> {
                     Padding(
                       padding: const EdgeInsets.all(17.0),
                       child: TextFormField(
-
                         autofocus: true,
                         decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.transparent,
                             label: Text('Email',
-                                style: TextStyle(color: Colors.white30)),
+                                style: TextStyle(color: Colors.white54)),
                             hintText: 'Enter your email',
                             hintStyle: TextStyle(color: Colors.white70),
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(width: 14, color: Colors.white),
+                                borderSide:
+                                    BorderSide(width: 14, color: Colors.white),
                                 borderRadius: BorderRadius.circular(100))),
-
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'please enter your email';
@@ -75,9 +78,10 @@ class _Login12State extends State<Login12> {
                             fillColor: Colors.transparent,
                             hintText: 'Enter the password',
                             hintStyle: TextStyle(color: Colors.white70),
-                            label: const Text('Password'),
+                            label: const Text('Password',style: TextStyle(color: Colors.white54)),
                             border: OutlineInputBorder(
-                           borderSide:     BorderSide(width: 14, color: Colors.green),
+                                borderSide:
+                                    BorderSide(width: 14, color: Colors.green),
                                 borderRadius: BorderRadius.circular(50))),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -85,46 +89,56 @@ class _Login12State extends State<Login12> {
                           }
                           return null;
                         },
-
                       ),
-                    ),TextButton(onPressed: () {
-
-                    }, child:
-                    Row(mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text('Forgot Password',style: TextStyle(color: Colors.lightBlue),),
-                      ],
-                    )),
+                    ),
+                    TextButton(
+                        onPressed: () {},
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Forgot Password',
+                              style: TextStyle(color: Colors.lightBlue),
+                            ),
+                          ],
+                        )),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton(
                           onPressed: () {
                             if (loginkey.currentState!.validate()) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text('success')));
+                                  const SnackBar(content: Text('success')));
                             }
                           },
-                          child: Text(
+                          child: const Text(
                             'Login',
-                            style:
-                                TextStyle(fontSize: 19, color: Colors.blue),
+                            style: TextStyle(fontSize: 19, color: Colors.blue),
                           )),
                     )
                   ],
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Column(
+                  child: Column(children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text('Do not have an account ? ',style: TextStyle(color: Colors.white,fontSize: 20)),
-                            TextButton(
-                                onPressed: () {}, child: Text('Register'))
-                          ],
-                        )
-                      ]),
+                        Text('Do not have an account ? ',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 20)),
+                        TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Regis(),
+                                  ));
+                            },
+                            child: Text('Register'))
+                      ],
+                    )
+                  ]),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -141,17 +155,14 @@ class _Login12State extends State<Login12> {
                           },
                         ),
                         IconButton(
-                          icon: Image.asset(
-                              'assets/images/google_logo_icon.png',
-                              cacheHeight: 40,
-                              cacheWidth: 40),
+                          icon: Image.asset('assets/images/insta.jpeg',
+                              cacheHeight: 40, cacheWidth: 40),
                           onPressed: () {
                             print("clicked");
                           },
                         )
                       ]),
                 ),
-
               ],
             )),
       ),

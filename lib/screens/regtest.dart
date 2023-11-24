@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'login.dart';
+
 class Regis extends StatefulWidget {
   const Regis({super.key});
 
@@ -77,7 +79,9 @@ class _RegisState extends State<Regis> {
                       }
                     },
                     child: Text('submit')),
-              )
+              ),Row(mainAxisAlignment: MainAxisAlignment.center,children: [Text('Already have an account?'),TextButton(onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Login12(),));
+              }, child: Text('Login'))],)
             ],
           )),
     );
