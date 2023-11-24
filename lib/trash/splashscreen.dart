@@ -34,7 +34,7 @@ class _SplashScState extends State<SplashSc> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image(image: AssetImage('assets/images/splashlogo.png')),
+          Image(image: AssetImage('assets/images/carcar.png')),
           Padding(
             padding: EdgeInsets.only(top: 90),
             child: CircularProgressIndicator(
